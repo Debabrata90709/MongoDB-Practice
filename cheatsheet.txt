@@ -1,0 +1,7 @@
+show dbs; - View all databases
+use comments - opening new databases as "comments"
+db - To know whether you are in "comments" databases
+use dbName - Create or switch to databases
+db - View current Database
+db.dropDatabase() - Delete Database
+show collections - To see collections
