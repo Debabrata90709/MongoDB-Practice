@@ -40,15 +40,62 @@ db.comments.insertMany([{
     'member_since': 4
 }])
 
-db.comments.find() - show all row in collection "comments"
-db.comments.find().pretty() - show all row in prettyfied form
-db.comments.find().pretty().limit(2) - shows 2 limited output
-db.comments.find().count() - Count the number of rows in the output
-db.comments.find({name:'Harry'}).count() - Counted the no of same object
-db.comments.find().sort({member_since:1}).pretty() - sorted on increasing order
-db.comments.find().sort({member_since:-1}).pretty() - sorted on decreasing order
 
 /* Search in a MongoDB Database */
 
+db.comments.find() - show all row in collection "comments"
+db.comments.find().pretty() - show all row in prettyfied form
+db.comments.find().pretty().limit(2) - shows 2 limited output
+
 db.comments.find({lang:'Python', 'name':'Rohan'}) - Search in a MongoDB Database
 
+db.comments.find().count() - Count the number of rows in the output
+db.comments.find({name:'Harry'}).count() - Counted the no of same object
+
+db.comments.find().sort({member_since:1}).pretty() - sorted on increasing order
+db.comments.find().sort({member_since:-1}).pretty() - sorted on decreasing order
+
+db.comments.findOne({name: 'Harry'}) - Find the first row matching the oject
+
+//Update a row
+db.comments.update({name: 'Harry'},
+ {
+    'name': 'Harry',
+    'lang': 'JavaScript',
+    'member_since': 51
+})
+
+// Updated and inserted a row incase missing row
+db.comments.update({name: 'Shubham'},
+ {
+    'name': 'Shubham',
+    'lang': 'JavaScript',
+    'member_since': 51
+}, {upsert: true} )
+
+//MongDB increment operator
+db.comments.update({name: 'Rohan'},
+{$inc:{
+    member_since: 2
+}})
+
+//Mongo Rename Opertor
+db.comments.update({name: 'Rohan'},
+{$rename:{
+    member_since: 'member'
+}})
+
+//Delete Row
+db.comments.remove({name: 'Harry'})
+
+//Less than
+db.comments.find({member_since: {$lt: 90}})
+
+//Greater than
+db.comments.find({member_since: {$gt: 90}})
+
+//Less than or Eq
+db.comments.find({member_since: {$lte: 90}})
+
+//Greater than or Eq
+db.comments.find({member_since: {$gte: 90}})
