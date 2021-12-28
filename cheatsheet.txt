@@ -1,7 +1,54 @@
+/* Mongo DB commands for databases */
+
 show dbs; - View all databases
 use comments - opening new databases as "comments"
 db - To know whether you are in "comments" databases
 use dbName - Create or switch to databases
 db - View current Database
-db.dropDatabase() - Delete Database
+db.dropDatabase() - To Delete Database
+
+
+/* Mongo DB commands for collections */
+
 show collections - To see collections
+db.createCollection('comments') - To create collection "comments"
+db.Content.drop() - To delete collection (db.collectionName.drop())
+
+/* Mongo DB commands for rows */
+
+//Insert One Rows
+db.comments.insert({
+    'name': 'Harry',
+    'lang': 'JavaScript',
+    'member_since': 5
+})
+
+//Insert Multiple Rows
+db.comments.insertMany([{
+    'name': 'Harry',
+    'lang': 'JavaScript',
+    'member_since': 5
+},
+{
+    'name': 'Rohan',
+    'lang': 'Python',
+    'member_since': 3
+},
+{
+    'name': 'Lovish',
+    'lang': 'Java',
+    'member_since': 4
+}])
+
+db.comments.find() - show all row in collection "comments"
+db.comments.find().pretty() - show all row in prettyfied form
+db.comments.find().pretty().limit(2) - shows 2 limited output
+db.comments.find().count() - Count the number of rows in the output
+db.comments.find({name:'Harry'}).count() - Counted the no of same object
+db.comments.find().sort({member_since:1}).pretty() - sorted on increasing order
+db.comments.find().sort({member_since:-1}).pretty() - sorted on decreasing order
+
+/* Search in a MongoDB Database */
+
+db.comments.find({lang:'Python', 'name':'Rohan'}) - Search in a MongoDB Database
+
